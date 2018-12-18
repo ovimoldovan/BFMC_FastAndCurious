@@ -40,8 +40,9 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=3):
     img = cv2.addWeighted(img, 0.8, line_img, 1.0, 0.0)
     # Return the modified image.
     return img
+''' TREBUIE INSTALAT PILLOW PENTRU JPG '''
 
-image = mpimg.imread('C:\\Users\\Amalia\\PycharmProjects\\imgPro\\img\\poza_test3.jpg')
+image = mpimg.imread('img/poza_test3.jpg')
 height, width = image.shape[:2]
 
 region_of_interest_vertices = [
@@ -55,7 +56,7 @@ region_of_interest_vertices = [
 gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 cannyed_image = cv2.Canny(gray_image, 100, 200)
 '''
-
+AICI PUTEM VERIFICA MATRICE IN LOC DE CANNY; RAMANE DE VAZUT
 '''
 # Moved the cropping operation to the end of the pipeline.
 cropped_image = region_of_interest(
