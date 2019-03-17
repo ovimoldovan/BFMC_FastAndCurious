@@ -7,7 +7,7 @@ def find_marker(image):
     #conv to grayscale, blur it, detect edges
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (5,5), 0)
-    edged = cv2.Canny(gray, 35, 125)
+    edged = cv2.Canny(gray, 70, 160)
 
     cv2.imshow("test",edged)
     cv2.waitKey(0)

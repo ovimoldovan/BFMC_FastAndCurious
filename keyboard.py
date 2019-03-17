@@ -14,4 +14,4 @@ def on_key_press(key,modifiers):
     elif (key == pyglet.window.key.RIGHT):
         print("MOVE RIGHT")
 
-pyglet.app.run();
+pyglet.app.run()
