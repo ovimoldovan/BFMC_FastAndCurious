@@ -22,6 +22,19 @@ import argparse
 import imutils
 
 SPEED = 0.2
+#obstacle
+waitline = b'OBST\r\n'
+try:
+    ser = serial.Serial("/dev/ttyUSB0", 9600)
+
+except:
+    print("Arduino nu e pe USB0")
+if(ser==None):
+    try:
+        ser = serial.Serial("/dev/ttyUSB1", 9600)
+        except:
+            print("Arduino nu e pe USB1")
+
 
 stop_cascade = cv2.CascadeClassifier('stopSignDetection/data/cascade.xml')
 
@@ -313,19 +326,22 @@ def cameraOptim():
 
                 cv2.imshow('frame', original_image) #se mai poate adauga argumentul cv2.COLOR_BGR2RGB
 
-
-                if m1 < 0 and m2 < 0:
-                        moveRight()
-                        time.sleep(0.1)
-                        dontMove()
-                elif m1 > 0 and m2 > 0:
-                        moveLeft()
-                        time.sleep(0.1)
-                        dontMove()
+                if(waitline != ser.readline()):
+                    if m1 < 0 and m2 < 0:
+                            moveRight()
+                            time.sleep(0.1)
+                            dontMove()
+                    elif m1 > 0 and m2 > 0:
+                            moveLeft()
+                            time.sleep(0.1)
+                            dontMove()
+                    else:
+                            moveForward()
+                            time.sleep(0.1)
+                            dontMove()
                 else:
-                        moveForward()
-                        time.sleep(0.1)
-                        dontMove()
+                    dontMove()
+                    print("OBSTACLE AHEAD")
 
                 
                 if cv2.waitKey(1) & 0xFF == ord('q'):
