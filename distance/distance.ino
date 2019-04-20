@@ -6,7 +6,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  bool val = digitalRead(7);
+  int val = digitalRead(7);
   if(val==0) Serial.println("OBST");
-  delay(50);
+  else Serial.println("Liber colegu");
+  delay(500);
 }
